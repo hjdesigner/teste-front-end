@@ -1,6 +1,7 @@
 'use strict'
 import React, { Component } from 'react'
 import Search from 'views/search'
+import Movies from 'views/movies'
 
 class App extends Component {
   constructor (props) {
@@ -24,6 +25,7 @@ class App extends Component {
               searchError: '',
               movies: data.items
             })
+            console.log(this.state.movies)
           })
       } else {
         this.setState({
@@ -34,14 +36,15 @@ class App extends Component {
   }
   render () {
     return (
-      <div className='container'>
-        <div className='row'>
+      <div className='row'>
+        <div className='col s12'>
           <Search
             labelInput='Procurar'
             handleSearch={this.handleSearch}
             statusSearch={this.state.statusSearch}
             searchError={this.state.searchError}
             labelBusca='Buscar' />
+          <Movies items={this.state.movies} />
         </div>
       </div>
     )
