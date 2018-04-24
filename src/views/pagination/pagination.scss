@@ -1,0 +1,24 @@
+.pagination {
+  &.false {
+    display: none;
+  }
+  &.true {
+    display: flex;
+  }
+  margin-top: 20px;
+  justify-content: center;
+  button {
+    width: 100%;
+    max-width: 320px;
+    border: 2px solid #3b3b3b;
+    background-color: #FFF;
+    color: #000;
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: #3b3b3b;
+      color: #FFF;
+      box-shadow: none;
+    }
+  }
+}

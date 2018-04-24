@@ -24,6 +24,7 @@
     &:not(.browser-default):active:not([readonly]) {
       border-color: #49a1df;
       box-shadow: 0 1px 0 0 #49a1df;
+      background-color: #FFF;
       + label {
         color: #000;
       }

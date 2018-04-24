@@ -1,5 +1,6 @@
 'use strict'
 import React from 'react'
+import PropTypes from 'prop-types'
 import './showcase.scss'
 
 const Showcase = ({ items }) => (
@@ -15,5 +16,9 @@ const Showcase = ({ items }) => (
     )}
   </ul>
 )
+
+Showcase.propTypes = {
+  items: PropTypes.array.isRequired
+}
 
 export default Showcase
