@@ -8,17 +8,23 @@ class App extends Component {
     this.state = {
       procurar: '',
       statusSearch: '',
-      searchError: ''
+      searchError: '',
+      movies: []
     }
     this.handleSearch = (e) => {
       e.preventDefault()
       const value = e.target.Procurar.value
       if (value !== '') {
-        this.setState({
-          procurar: value,
-          statusSearch: 'active',
-          searchError: ''
-        })
+        fetch(`https://www.googleapis.com/youtube/v3/search?part=id%2Csnippet&q=${value}&maxResults=20&key=AIzaSyCmLZ7XG1MHXCu1VkzDw2w3WwCcaw9lex8`)
+          .then(response => response.json())
+          .then((data) => {
+            this.setState({
+              procurar: value,
+              statusSearch: 'active',
+              searchError: '',
+              movies: data.items
+            })
+          })
       } else {
         this.setState({
           searchError: 'O campo Procurar não pode ficar vazio'
