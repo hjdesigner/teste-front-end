@@ -2,6 +2,10 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  a {
+    color: initial;
+    width: 100%;
+  }
   li {
     width: 100%;
     display: flex;

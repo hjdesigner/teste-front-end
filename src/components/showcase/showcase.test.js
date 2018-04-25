@@ -118,6 +118,9 @@ describe('<Showcase />', () => {
   it('Wrapper1 should return one li', () => {
     expect(wrapper1.find('li')).to.have.length(1)
   })
+  it('Wrapper1 should contain link whit data-id correct equal videoId', () => {
+    expect(wrapper1.find('[data-id="jksTmnsxe3M"]')).to.have.length(1)
+  })
   it('Wrapper1 should contain image correct equal date1', () => {
     const image = wrapper1.find('figure')
     expect(image.contains(<img src='https://i.ytimg.com/vi/jksTmnsxe3M/mqdefault.jpg' />)).to.equal(true)
@@ -132,6 +135,12 @@ describe('<Showcase />', () => {
   })
   it('Wrapper2 should return two li', () => {
     expect(wrapper2.find('li')).to.have.length(2)
+  })
+  it('Wrapper2 should contain link whit data-id correct equal videoId', () => {
+    expect(wrapper2.find('[data-id="jksTmnsxe3M"]')).to.have.length(1)
+  })
+  it('Wrapper2 should contain link whit data-id correct equal videoId', () => {
+    expect(wrapper2.find('[data-id="5k7pk272Lrw"]')).to.have.length(1)
   })
   it('Wrapper2 should contain image correct equal date2', () => {
     const image2 = wrapper2.find('figure').at(1)

@@ -1,8 +1,8 @@
 'use strict'
 import React, { Component } from 'react'
-import Search from 'views/search'
-import Movies from 'views/movies'
-import Pagination from 'views/pagination'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import Home from 'views/home'
+import PagePlay from 'views/page-play'
 
 class App extends Component {
   constructor (props) {
@@ -13,7 +13,8 @@ class App extends Component {
       searchError: '',
       statusPagination: 'false',
       nextPage: '',
-      movies: []
+      movies: [],
+      playItem: []
     }
     this.handleSearch = (e) => {
       e.preventDefault()
@@ -75,21 +76,37 @@ class App extends Component {
           }
         })
     }
+    this.handleClickLink = (e) => {
+      let videoId = e.target.closest('a').getAttribute('data-id')
+      fetch(`https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=snippet,statistics&key=AIzaSyCmLZ7XG1MHXCu1VkzDw2w3WwCcaw9lex8`)
+        .then(response => response.json())
+        .then((data) => {
+          this.setState({
+            playItem: data.items
+          })
+        })
+    }
   }
   render () {
     return (
-      <div className='row'>
-        <div className='col s12'>
-          <Search
-            labelInput='Procurar'
-            handleSearch={this.handleSearch}
-            statusSearch={this.state.statusSearch}
-            searchError={this.state.searchError}
-            labelBusca='Buscar' />
-          <Movies items={this.state.movies} />
-          <Pagination label='mostrar mais videos' status={this.state.statusPagination} handlePagination={this.handlePagination} />
+      <Router>
+        <div className='row'>
+          <div className='col s12'>
+            <Route exact path='/' render={(...props) => (<Home
+              labelInput='Procurar'
+              handleSearch={this.handleSearch}
+              statusSearch={this.state.statusSearch}
+              searchError={this.state.searchError}
+              labelBusca='Buscar'
+              items={this.state.movies}
+              handleClickLink={this.handleClickLink}
+              labelPagination='mostrar mais videos'
+              statusPagination={this.state.statusPagination}
+              handlePagination={this.handlePagination} />)} />
+            <Route exact path='/video' render={(props) => (<PagePlay playItem={this.state.playItem} />)} />
+          </div>
         </div>
-      </div>
+      </Router>
     )
   }
 }
