@@ -20,7 +20,7 @@ class App extends Component {
       e.preventDefault()
       const value = e.target.Procurar.value
       if (value !== '') {
-        fetch(`https://www.googleapis.com/youtube/v3/search?part=id%2Csnippet&q=${value}&maxResults=20&key=AIzaSyCmLZ7XG1MHXCu1VkzDw2w3WwCcaw9lex8`)
+        fetch(`https://www.googleapis.com/youtube/v3/search?part=id%2Csnippet&q=${value}&maxResults=20&order=relevance&type=video,playlist&key=AIzaSyCmLZ7XG1MHXCu1VkzDw2w3WwCcaw9lex8`)
           .then(response => response.json())
           .then((data) => {
             if (data.items.length > 0) {
