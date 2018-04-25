@@ -21,7 +21,7 @@ module.exports = {
   },
 
   htmlPluginConfig: {
-    title: 'Account Project',
+    title: 'View Youtube',
     template: join(paths.src, 'html', 'template.html')
   },
 
